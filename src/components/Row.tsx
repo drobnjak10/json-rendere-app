@@ -1,0 +1,79 @@
+import React, { useCallback, useMemo, useState } from "react";
+import { useData } from "../context/Context";
+import { DataActions, IData } from "../context/context-interfaces";
+import { checkFieldType } from "../utils";
+import InputElement from "./InputElement";
+
+const Row = ({ item }: { item: IData }) => {
+  const { dispatch } = useData();
+  const [obj, setObj] = useState<any>(item);
+
+  const setOnChange = useCallback((evt: any) => {
+    setObj((prevObj: any) => ({
+      ...prevObj,
+      [evt.target.id]: evt.target.value,
+    }));
+  }, []);
+
+  let fullItems = useMemo(() => {
+    return Object.entries(item).map((element) => {
+      const fieldType = checkFieldType(element[1]);
+      return {
+        [element[0]]: element[1],
+        fieldType,
+        fieldId: element[0],
+        fieldValue: element[1],
+      };
+    });
+  }, [item]);
+
+  const handleSubmit = useCallback(
+    (e: React.MouseEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      dispatch({ type: DataActions.EDIT_DATA, payload: obj });
+    },
+    [dispatch, obj]
+  );
+  
+  return (
+    <form
+      className="form"
+      style={{
+        width: "100%",
+        borderBottom: "1px solid #aaa",
+        padding: "10px 0",
+      }}
+      onSubmit={handleSubmit}
+    >
+      <div
+        className="inputs"
+        style={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "space-between",
+          marginBottom: "10px",
+          gap: "10px",
+        }}
+      >
+        {fullItems.length &&
+          fullItems.map((element, index) => {
+            if (element.fieldId === "_id") {
+              return null;
+            }
+            return (
+              <InputElement
+                setOnChange={setOnChange}
+                item={element}
+                key={element.fieldId}
+              />
+            );
+          })}
+      </div>
+      <button style={{ width: "100%" }} type="submit">
+        Edit
+      </button>
+    </form>
+  );
+};
+
+export default Row;
