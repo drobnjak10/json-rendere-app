@@ -21,7 +21,6 @@ const RadioInput = ({
   return (
     <div
       className="input-group"
-      style={{ border: "1px solid #aaa", padding: "4px" }}
     >
       <h5>{item.fieldId}</h5>
       <label htmlFor={item.fieldId}>true</label> <br />

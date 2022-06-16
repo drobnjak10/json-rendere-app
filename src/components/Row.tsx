@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { useData } from "../context/Context";
 import { DataActions, IData } from "../context/context-interfaces";
 import { checkFieldType } from "../utils";
-import InputElement from "./InputElement";
+import InputElement from "../ui/InputElement";
 
 const Row = ({ item }: { item: IData }) => {
   const { dispatch } = useData();
@@ -34,27 +34,10 @@ const Row = ({ item }: { item: IData }) => {
     },
     [dispatch, obj]
   );
-  
+
   return (
-    <form
-      className="form"
-      style={{
-        width: "100%",
-        borderBottom: "1px solid #aaa",
-        padding: "10px 0",
-      }}
-      onSubmit={handleSubmit}
-    >
-      <div
-        className="inputs"
-        style={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "space-between",
-          marginBottom: "10px",
-          gap: "10px",
-        }}
-      >
+    <form className="form" onSubmit={handleSubmit}>
+      <div className="inputs">
         {fullItems.length &&
           fullItems.map((element, index) => {
             if (element.fieldId === "_id") {

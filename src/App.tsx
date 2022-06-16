@@ -4,7 +4,7 @@ import { useData } from "./context/Context";
 
 function App() {
   const { state } = useData();
-  const { data } = state; // length more than 1500
+  const { data } = state;
 
   return (
     <div className="App">

@@ -1,8 +1,8 @@
 import { memo } from "react";
 import { ICustomItem } from "../context/context-interfaces";
-import Input from "../ui/Input";
-import RadioInput from "../ui/RadioInput";
-import TextArea from "../ui/TextArea";
+import Input from "./Input";
+import RadioInput from "./RadioInput";
+import TextArea from "./TextArea";
 
 const InputElement = ({
   setOnChange,

@@ -1,4 +1,4 @@
-function isDate(value: any) {
+export function checkIsDate(value: any) {
   if (typeof value === "string") {
     const regex =
       /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)? )((-(\d{2}):(\d{2}))?)$/;
@@ -10,9 +10,13 @@ function isDate(value: any) {
 }
 
 export function checkFieldType(value: any) {
-  if (isDate(value)) {
+  if (checkIsDate(value)) {
     return "date";
-  } else if (typeof value == "boolean" || value === 'true' || value === 'false') {
+  } else if (
+    typeof value == "boolean" ||
+    value === "true" ||
+    value === "false"
+  ) {
     return "radio";
   } else if (typeof value === "string" && value.startsWith("+")) {
     return "text";

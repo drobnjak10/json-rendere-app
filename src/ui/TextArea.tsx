@@ -13,10 +13,7 @@ const TextArea = ({
   };
 
   return (
-    <div
-      className="input-group"
-      style={{ border: "1px solid #aaa", padding: "4px" }}
-    >
+    <div className="input-group">
       <label htmlFor={item.fieldId}>
         {item.fieldValue.slice(0, 150) + "..."}{" "}
       </label>{" "}

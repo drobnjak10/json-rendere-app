@@ -13,10 +13,7 @@ const Input = ({
   };
 
   return (
-    <div
-      className="input-group"
-      style={{ border: "1px solid #aaa", padding: "4px" }}
-    >
+    <div className="input-group">
       <label htmlFor={item.fieldId}>
         {typeof item.fieldValue === "boolean" ? "active" : item.fieldValue}
       </label>{" "}
