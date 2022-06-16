@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useData } from "../context/Context";
 import { DataActions, IData } from "../context/context-interfaces";
-import { checkFieldType } from "../utils";
 import InputElement from "../ui/InputElement";
+import { checkFieldType } from "../utils";
 
 const Row = ({ item }: { item: IData }) => {
   const { dispatch } = useData();

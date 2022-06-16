@@ -21,8 +21,8 @@ export interface IAction {
 }
 
 export enum DataActions {
-    UPDATE_DATA = 'UPDATE_DATA',
-    EDIT_DATA = 'EDIT_DATA'
+  UPDATE_DATA = "UPDATE_DATA",
+  EDIT_DATA = "EDIT_DATA",
 }
 
 export interface ICustomItem {

@@ -4,9 +4,8 @@ import {
   ReactNode,
   useContext,
   useEffect,
-  useReducer
+  useReducer,
 } from "react";
-import useFetch from "../hooks/useFetch";
 import { DataActions, IAction, IDataState } from "./context-interfaces";
 import { dataReducer } from "./dataReducer";
 
@@ -21,11 +20,14 @@ const initialState: IDataState = {
 
 export const DataProvider = (props: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
-  const { data } = useFetch("./data.json");
 
   useEffect(() => {
-    dispatch({ type: DataActions.UPDATE_DATA, payload: data });
-  }, [data]);
+    fetch("./data.json")
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch({ type: DataActions.UPDATE_DATA, payload: json });
+      });
+  }, []);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>

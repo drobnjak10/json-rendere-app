@@ -19,6 +19,7 @@ export const dataReducer = (state: IDataState, action: IAction) => {
 
       return {
         data,
+        loading: false,
       };
     default:
       return state;

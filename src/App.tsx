@@ -6,9 +6,13 @@ function App() {
   const { state } = useData();
   const { data } = state;
 
+  if (!data?.length) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="App">
-      {data.length > 0 &&
+      {data?.length > 0 &&
         data.map((item) => {
           return <Row key={item._id} item={item} />;
         })}
